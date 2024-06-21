@@ -23,7 +23,7 @@ The methodology involves several distinct stages: data preparation, exploratory 
 5. **Data Visualization**
 - Distribution of Age Groups: Create a histogram to visualize the distribution of customer ages segmented into predefined age groups.
 - Total Claim Amount by Customer Region: Generate a box plot to display the distribution of total claim amounts across different customer regions, highlighting central tendencies, dispersion, and outliers.
-6.**Advanced Analysis and Preprocessing**
+6. **Advanced Analysis and Preprocessing**
 - Cross Tabulation: Construct contingency tables to examine relationships between categorical variables and key features such as property damage, emergency services notification, and police report availability.
 - Standardization and Encoding: Standardize numerical features using StandardScaler and one-hot encode categorical variables using OneHotEncoder to prepare the data for machine learning models.
 - Dimensionality Reduction: Apply Principal Component Analysis (PCA) to reduce dimensionality and retain essential variance, to improve computational efficiency and mitigate the curse of dimensionality.
