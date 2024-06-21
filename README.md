@@ -24,17 +24,17 @@ The methodology involves several distinct stages: data preparation, exploratory 
 - Distribution of Age Groups: Create a histogram to visualize the distribution of customer ages segmented into predefined age groups.
 - Total Claim Amount by Customer Region: Generate a box plot to display the distribution of total claim amounts across different customer regions, highlighting central tendencies, dispersion, and outliers.
 6. **Advanced Analysis and Preprocessing**
-- Cross Tabulation: Construct contingency tables to examine relationships between categorical variables and key features such as property damage, emergency services notification, and police report availability.
-- Standardization and Encoding: Standardize numerical features using StandardScaler and one-hot encode categorical variables using OneHotEncoder to prepare the data for machine learning models.
-- Dimensionality Reduction: Apply Principal Component Analysis (PCA) to reduce dimensionality and retain essential variance, to improve computational efficiency and mitigate the curse of dimensionality.
+- **Cross Tabulation**: Construct contingency tables to examine relationships between categorical variables and key features such as property damage, emergency services notification, and police report availability.
+- **Standardization and Encoding**: Standardize numerical features using StandardScaler and one-hot encode categorical variables using OneHotEncoder to prepare the data for machine learning models.
+- **Dimensionality Reduction**: Apply Principal Component Analysis (PCA) to reduce dimensionality and retain essential variance, to improve computational efficiency and mitigate the curse of dimensionality.
 7. **Anomaly Detection and SHAP Analysis**
-- Isolation Forest Model: Use an Isolation Forest model for anomaly detection, focusing on identifying outliers in high-dimensional datasets.
+- **Isolation Forest Model**: Use an Isolation Forest model for anomaly detection, focusing on identifying outliers in high-dimensional datasets.
 - Anomaly Score Assignment: Train the model and predict anomalies, assigning scores to data points for further analysis.
 - Top Anomalies Identification: Extract and analyze the top anomalies based on total claim amounts to identify significant outliers.
-- SHAP Analysis: Perform SHAP analysis to interpret model predictions and identify features contributing to the likelihood of fraudulent behavior.
+- **SHAP Analysis**: Perform SHAP analysis to interpret model predictions and identify features contributing to the likelihood of fraudulent behavior.
 8. **Model Building and Interpretation**
 - Data Preprocessing for Clustering: Scale numerical variables and apply PCA for dimensionality reduction. One-hot encode categorical variables for clustering.
-- K-means Clustering: Apply the K-means algorithm to partition the data into distinct clusters, using the elbow method and silhouette analysis to determine the optimal number of clusters.
+- **K-means Clustering**: Apply the K-means algorithm to partition the data into distinct clusters, using the elbow method and silhouette analysis to determine the optimal number of clusters.
 - Cluster Visualization and Interpretation: Visualize customer segments, analyze feature distributions across segments, and interpret cluster characteristics to inform risk assessment and fraud detection strategies.
 
 
