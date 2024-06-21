@@ -1,4 +1,4 @@
-# Customer Segmentation, Fraud Detection for Nonlife Insurance Company
+# Advanced Business Analytics: Customer Segmentation and Fraud Detection for Nonlife Insurance Company
 
 ## Objective
 The primary objective of this project is to conduct an in-depth analysis of claims data from a non-life insurance company focusing on motor insurance. The overarching goal is to leverage advanced data analysis techniques to yield a nuanced understanding of customer profiles, claim patterns, and potential areas of risk. The insights derived are expected to provide actionable insights for risk assessment, customer segmentation, and fraud detection in the insurance domain. 
