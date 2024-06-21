@@ -17,11 +17,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
-import shap
-from sklearn.ensemble import IsolationForest
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
 
 # Load the dataset
 file_path = '/Users/apple/Downloads/claims_q12023.csv'  # Update this to your file's path
@@ -64,21 +59,21 @@ plt.show()
 # Bar chart to show the count of missing values in each column
 msno.bar(data)
 plt.show()
+
 # Cross Tabulation
 for col in ['cust_region', 'sum_assured_group', 'insured_sex', 'edu_lvl', 'marital_status', 'claim_type']:
     print(pd.crosstab(data[col], data['property_damage'].isnull()))
     print(pd.crosstab(data[col], data['emg_services_notified'].isnull()))
     print(pd.crosstab(data[col], data['police_report_avlbl'].isnull()))
 
-# We assume that for 'parked car' and 'theft' incidents, the 'acc_type' should be set to 'Not Applicable' and 'Minor incident',
-# because the nature of missingness indicate that there is
+# We assume that for 'parked car' and 'theft' incidents, the 'acc_type' should be set to 'Not Applicable' and 'Minor incident'
 # Set 'acc_type' to 'Not Applicable' for 'theft' incidents
 data.loc[data['claim_type'] == 'theft', 'acc_type'] = 'Not Applicable'
 
 # Set 'acc_type' to 'Minor incident' for 'parked car' incidents
 data.loc[data['claim_type'] == 'parked car', 'acc_type'] = 'Minor incident'
 
-# Segment 'cust_age' into age groups
+# Segment 'cust_age' into age groups, store them in a new column
 data['Age_Group'] = pd.cut(data['cust_age'], bins=[18, 25, 35, 45, 55, 65, np.inf], labels=['18-25', '26-35', '36-45', '46-55', '56-65', '65+'])
 # Drop the 'cust_age' column if you decide it's no longer needed
 data.drop('cust_age', axis=1, inplace=True)
@@ -96,10 +91,6 @@ for column in columns_to_impute:
 
 # Display the head of the DataFrame to check the changes
 print(data.head())
-
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
 
 # Replace 'numerical_cols' and 'categorical_cols' with your column names
 numerical_cols = data.select_dtypes(include=['int64', 'float64']).columns
@@ -119,13 +110,10 @@ preprocessor = ColumnTransformer(
 # Apply the preprocessor
 X_preprocessed = preprocessor.fit_transform(data)
 
-from sklearn.cluster import KMeans
 
 # You can start with a random guess for the number of clusters
 kmeans = KMeans(n_clusters=5, init='k-means++', random_state=42)
 kmeans.fit(X_preprocessed)
-
-import matplotlib.pyplot as plt
 
 inertia = []
 for n in range(1, 11):
@@ -154,7 +142,6 @@ from sklearn.metrics import silhouette_score
 # Assuming 'X_preprocessed' is your feature set and 'clusters' is the array of cluster labels
 score = silhouette_score(X_preprocessed, data['cluster'])
 print('Silhouette Score:', score)
-
 
 #One hot encoding columns, PCA and k-meanss clustering
 
