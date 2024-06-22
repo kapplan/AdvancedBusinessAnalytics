@@ -239,3 +239,4 @@ plt.title('Average Annual Premium by Segment')
 plt.xlabel('Segment')
 plt.ylabel('Average Annual Premium')
 plt.show()
+
