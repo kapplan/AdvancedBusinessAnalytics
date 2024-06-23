@@ -1,13 +1,44 @@
 # Advanced Business Analytics: Customer Segmentation and Fraud Detection for Nonlife Insurance Company
 
 ## Objective
-The primary objective of this project is to conduct an in-depth analysis of claims data from a non-life insurance company focusing on motor insurance. The overarching goal is to leverage advanced data analysis techniques to yield a nuanced understanding of customer profiles, claim patterns, and potential areas of risk. The insights derived are expected to provide actionable insights for risk assessment, customer segmentation, and fraud detection in the insurance domain. 
+The primary objective of this project is to conduct an in-depth analysis of claims data from a non-life insurance company focusing on motor insurance. The overarching goal is to leverage advanced data analysis techniques to yield a nuanced understanding of customer profiles, claim patterns, and potential areas of risk in order to optimize profit. 
 
 ## Methodology
 The methodology involves several distinct stages: data preparation, exploratory data analysis (EDA), feature engineering, segmentation model development, and anomaly detection. Each stage employs specific techniques and focuses on extracting meaningful insights from the data.
 
+## Dataset
+- cust_age: int64 - Age of the policyholder.
+- policy_id: int64 - Unique identifier for each insurance policy.
+- coverage_start_date: object - Date when the insurance coverage began.
+- cust_region: object - Geographic region of the policyholder.
+- sum_assured_group: object - Sum assured groups indicating coverage amount.
+- ins_deductible: int64 - Deductible amount on the insurance policy.
+- annual_prem: float64 - Annual premium paid by the policyholder.
+- zip_code: int64 - ZIP code of the policyholder's residence.
+- insured_sex: object - Gender of the insured.
+- edu_lvl: object - Education level of the policyholder.
+- marital_status: object - Marital status of the policyholder.
+- claim_incurred_date: object - Date when the claim was incurred.
+- claim_type: object - Types of claims (e.g., theft, accident).
+- acc_type: object - Nature of the accident.
+- emg_services_notified: object - Whether emergency services were notified.
+- incident_city: object - City where the incident occurred.
+- incident_hour: int64 - Hour of the day when the incident occurred.
+- num_vehicles_involved: int64 - Number of vehicles involved in the incident.
+- property_damage: object - Whether property damage occurred.
+- bodily_injuries: int64 - Number of bodily injuries reported.
+- witnesses: int64 - Number of witnesses to the incident.
+- police_report_avlbl: object - Whether a police report is available.
+- total_claim_amount: int64 - Total amount claimed.
+- injury_claim: int64 - Amount claimed for injuries.
+- property_claim: int64 - Amount claimed for property damage.
+- vehicle_claim: int64 - Amount claimed for vehicle damage.
+- car_brand: object - Brand of the car involved in the claim.
+- car_model: object - Model of the car involved.
+- production_year: int64 - Production year of the car.
+ 
 1. **Data Collection and Preparation**
-2. **Initial Data Exploration**
+3. **Initial Data Exploration**
 - Dataset Snapshot: Display the first few records using head() and print the data types of each column with dtypes to understand the dataset structure and verify data formats.
 - Unique Value Overview: Use a dictionary comprehension to extract and print unique values from each column, providing a comprehensive overview of the range and categories present in the data.
 - Missing Values Analysis: Identify missing values across the dataset using isnull().sum(). 
