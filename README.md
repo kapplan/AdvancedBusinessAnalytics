@@ -40,18 +40,20 @@ The methodology involves several distinct stages: data preparation, exploratory 
 
 1. **Data Collection and Preparation**
 3. **Initial Data Exploration**
-- Dataset Snapshot: Display the first few records using head() and print the data types of each column with dtypes to understand the dataset structure and verify data formats.
+- Dataset Snapshot: Understand the dataset structure and verify data formats.
 - Unique Value Overview: Use a dictionary comprehension to extract and print unique values from each column, providing a comprehensive overview of the range and categories present in the data.
-- Missing Values Analysis: Identify missing values across the dataset using isnull().sum(). 
+- Missing Values Analysis: Identify missing values across the dataset. 
 - Descriptive Statistics: Generate descriptive statistics with describe(include='all') to summarize both numerical and categorical columns, to analyse the central tendencies, dispersion, and potential outliers.
   
 3. **Data Cleaning and Imputation**
-- Impute Missing Values: Address missing values in the acc_type, emg_services_notified, property_damage, and police_report_avlbl columns using context-specific imputation strategies and mode imputation.
 - Standardize Missing Data Representation: Convert placeholders like empty strings and ? to np.nan for consistent handling of missing values.
+- Impute Missing Values: Address missing values in the acc_type, emg_services_notified, property_damage, and police_report_avlbl columns using context-specific imputation strategies and mode imputation.
+
 4. **Feature Engineering**
 - Age Group Segmentation: Create a new variable, age_group, by binning the cust_age variable into categorical age ranges.
 - Derived Feature Creation: Calculate claim_amount_per_vehicle by dividing total_claim_amount by num_vehicles_involved to gain insights into the average claim cost per vehicle.
 - Date Feature Extraction: Transform date features to datetime objects and create a new feature, time_to_claim, representing the time difference between policy initiation and claim reporting.
+  
 5. **Data Visualization**
 - Distribution of Age Groups: Create a histogram to visualize the distribution of customer ages segmented into predefined age groups.
 - Total Claim Amount by Customer Region: Generate a box plot to display the distribution of total claim amounts across different customer regions, highlighting central tendencies, dispersion, and outliers.
