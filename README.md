@@ -7,6 +7,7 @@ The primary objective of this project is to conduct an in-depth analysis of clai
 The methodology involves several distinct stages: data preparation, exploratory data analysis (EDA), feature engineering, segmentation model development, and anomaly detection. Each stage employs specific techniques and focuses on extracting meaningful insights from the data.
 
 ## Dataset
+The dataset contains 1000 rows and 29 columns. Following are the columns:
 - cust_age: int64 - Age of the policyholder.
 - policy_id: int64 - Unique identifier for each insurance policy.
 - coverage_start_date: object - Date when the insurance coverage began.
