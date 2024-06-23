@@ -3,9 +3,6 @@
 ## Objective
 The primary objective of this project is to conduct an in-depth analysis of claims data from a non-life insurance company focusing on motor insurance. The overarching goal is to leverage advanced data analysis techniques to yield a nuanced understanding of customer profiles, claim patterns, and potential areas of risk in order to optimize profit. 
 
-## Methodology
-The methodology involves several distinct stages: data preparation, exploratory data analysis (EDA), feature engineering, segmentation model development, and anomaly detection. Each stage employs specific techniques and focuses on extracting meaningful insights from the data.
-
 ## Dataset
 The dataset contains 1000 rows and 29 columns. Following are the columns:
 - cust_age: int64 - Age of the policyholder.
@@ -37,7 +34,10 @@ The dataset contains 1000 rows and 29 columns. Following are the columns:
 - car_brand: object - Brand of the car involved in the claim.
 - car_model: object - Model of the car involved.
 - production_year: int64 - Production year of the car.
- 
+
+ ## Methodology
+The methodology involves several distinct stages: data preparation, exploratory data analysis (EDA), feature engineering, segmentation model development, and anomaly detection. Each stage employs specific techniques and focuses on extracting meaningful insights from the data.
+
 1. **Data Collection and Preparation**
 3. **Initial Data Exploration**
 - Dataset Snapshot: Display the first few records using head() and print the data types of each column with dtypes to understand the dataset structure and verify data formats.
