@@ -36,7 +36,7 @@ The dataset contains 1000 rows and 29 columns. Following are the columns:
 - production_year: int64 - Production year of the car.
 
  ## Methodology
-The methodology involves several distinct stages: data preparation, exploratory data analysis (EDA), feature engineering, segmentation model development, and anomaly detection. Each stage employs specific techniques and focuses on extracting meaningful insights from the data.
+The methodology involves several distinct stages: data preparation, exploratory data analysis (EDA), feature engineering, segmentation model development, anomaly detection, and revenue optimization through dynamic pricing. Each stage employs specific techniques and focuses on extracting meaningful insights from the data.
 
 1. **Data Collection and Preparation**
 3. **Initial Data Exploration**
