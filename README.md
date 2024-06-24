@@ -109,7 +109,7 @@ The methodology involves several distinct stages: data preparation, exploratory 
 | 147217    | -83181.582642    | Jeep       | Wrangler   |
 
 
-## Cluster Summary
+### Profitable/Non-Profitble High/Low Risk Customer Segmentation
 
 | Risk Cluster | Net Contribution | Total Premiums Paid |
 |--------------|------------------:|--------------------:|
@@ -119,7 +119,7 @@ The methodology involves several distinct stages: data preparation, exploratory 
 
 High Risk Cluster: 1
 
-## Dynamic Pricing for the High Risk Cluster
+### Afterpply more aggressive premium adjustments for high-risk customers
 **Original Revenue**: 1254516.15
 **Adjusted Revenue After Dynamic Pricing based on Risk**: 1320695.395160412
 **Revenue Increase Percentage**: 5.28%
