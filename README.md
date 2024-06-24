@@ -46,17 +46,16 @@ The methodology involves several distinct stages: data preparation, exploratory 
 - Descriptive Statistics: Generate descriptive statistics with describe(include='all') to summarize both numerical and categorical columns, to analyse the central tendencies, dispersion, and potential outliers.
   
 3. **Data Cleaning and Imputation**
-- Standardize Missing Data Representation: Convert placeholders like empty strings and ? to np.nan for consistent handling of missing values.
-- Impute Missing Values: Address missing values in the acc_type, emg_services_notified, property_damage, and police_report_avlbl columns using context-specific imputation strategies and mode imputation.
+- Missing Data Representation: Convert placeholders like empty strings and ? to np.nan for consistent handling of missing values.
+- Missing Values Imputaion: Address missing values in the acc_type, emg_services_notified, property_damage, and police_report_avlbl columns using context-specific imputation strategies and mode imputation.
 
 4. **Feature Engineering**
 - Age Group Segmentation: Create a new variable, age_group, by binning the cust_age variable into categorical age ranges.
-- Derived Feature Creation: Calculate claim_amount_per_vehicle by dividing total_claim_amount by num_vehicles_involved to gain insights into the average claim cost per vehicle.
+- New Feature Creation: Calculate claim_amount_per_vehicle by dividing total_claim_amount by num_vehicles_involved to gain insights into the average claim cost per vehicle.
 - Date Feature Extraction: Transform date features to datetime objects and create a new feature, time_to_claim, representing the time difference between policy initiation and claim reporting.
   
 5. **Data Visualization**
-- Distribution of Age Groups: Create a histogram to visualize the distribution of customer ages segmented into predefined age groups.
-- Total Claim Amount by Customer Region: Generate a box plot to display the distribution of total claim amounts across different customer regions, highlighting central tendencies, dispersion, and outliers.
+
 6. **Advanced Analysis and Preprocessing**
 - **Cross Tabulation**: Construct contingency tables to examine relationships between categorical variables and key features such as property damage, emergency services notification, and police report availability.
 - **Standardization and Encoding**: Standardize numerical features using StandardScaler and one-hot encode categorical variables using OneHotEncoder to prepare the data for machine learning models.
@@ -70,8 +69,45 @@ The methodology involves several distinct stages: data preparation, exploratory 
 - Data Preprocessing for Clustering: Scale numerical variables and apply PCA for dimensionality reduction. One-hot encode categorical variables for clustering.
 - **K-means Clustering**: Apply the K-means algorithm to partition the data into distinct clusters, using the elbow method and silhouette analysis to determine the optimal number of clusters.
 - Cluster Visualization and Interpretation: Visualize customer segments, analyze feature distributions across segments, and interpret cluster characteristics to inform risk assessment and fraud detection strategies.
+  
+9. **Further Analysis of Profitable and Non-Profitable Segments**
+- Summary Statistics: Summary statistics are generated for profitable and non-profitable customers to compare their characteristics.
+- Distribution Analysis: The distribution of age groups, claim types, and annual premiums in profitable vs non-profitable segments are visualized using count plots and box plots.
+- Correlation Analysis: Correlation matrices are created for profitable and non-profitable segments to identify key relationships between features.
+- Evaluate Loss Ratios: Loss ratios are evaluated for various percentiles to determine the threshold for high-risk customers.
+- Cluster Analysis: K-Means clustering is applied to identify high-risk clusters based on features such as net contribution, loss ratio, total claimed amount, and total premiums paid.
+
+10. **Revenue Analysis and Dynamic Pricing**
+- Dynamic Pricing Strategy: A sophisticated risk assessment model using RandomForestRegressor is developed to predict the net contribution of each customer. More aggressive premium adjustments are applied for high-risk customers to optimize revenue.
+- Adjust Premiums for High-Risk Customers: Premium adjustments are applied dynamically based on the risk assessment model to ensure a minimum increase for high-risk customers and prevent revenue loss.
+
+## Summary and Findings
+
+### Policy IDs with significant financial losses:
+
+| Policy ID | Net Contribution | Car Brand  | Car Model  |
+|-----------|------------------|------------|------------|
+| 132045    | -151509.365038   | Subaru     | Impreza    |
+| 209446    | -140091.436277   | Mercedes   | E400       |
+| 310312    | -138950.512690   | BMW        | X5         |
+| 113947    | -137967.702177   | Chevrolet  | Tahoe      |
+| 453588    | -135790.960383   | Mercedes   | ML350      |
+| 113442    | -105828.234086   | Volkswagen | Passat     |
+| 226009    | -98255.107844    | Dodge      | RAM        |
+| 301512    | -97926.774949    | Audi       | A5         |
+| 130053    | -96168.230226    | Audi       | A3         |
+| 484930    | -94934.247392    | Mercedes   | ML350      |
+| 264572    | -93931.659849    | Honda      | CRV        |
+| 574854    | -92630.272033    | Ford       | Escape     |
+| 371084    | -91633.887967    | BMW        | X5         |
+| 565225    | -90372.978508    | Chevrolet  | Malibu     |
+| 359353    | -89720.998522    | Accura     | TL         |
+| 214333    | -88073.603258    | Toyota     | Corolla    |
+| 555873    | -86640.002765    | Audi       | A5         |
+| 215236    | -84435.630883    | Audi       | A5         |
+| 101040    | -83388.479671    | Subaru     | Legacy     |
+| 147217    | -83181.582642    | Jeep       | Wrangler   |
 
 
-
-
-
+Susipicous Policy IDs: [113947, 310312, 592543, 132045, 438097, 500283, 185750, 209446, 113442, 453588]
+Total Net Contribution (Claim Amount substracted by Annual Premiums Paid) of Suspicious Policy IDs: -1192486.0300000003
