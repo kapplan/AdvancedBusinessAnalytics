@@ -109,8 +109,8 @@ The methodology involves several distinct stages: data preparation, exploratory 
 | 147217    | -83181.582642    | Jeep       | Wrangler   |
 
 
-### Profitable/Non-Profitble High/Low Risk Customer Segmentation
 
+### Profitable/Non-Profitble High/Low Risk Customer Segmentation
 ![Diagram](custsomer_segmentation_outliers.jpg)
 
 | Risk Cluster | Net Contribution | Total Premiums Paid |
