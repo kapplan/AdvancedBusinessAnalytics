@@ -119,7 +119,7 @@ The methodology involves several distinct stages: data preparation, exploratory 
 
 High Risk Cluster: 1
 
-### Afterpply more aggressive premium adjustments for high-risk customers
+### After apply more aggressive premium adjustments for high-risk customers
 **Original Revenue**: 1254516.15
 **Adjusted Revenue After Dynamic Pricing based on Risk**: 1320695.395160412
 **Revenue Increase Percentage**: 5.28%
