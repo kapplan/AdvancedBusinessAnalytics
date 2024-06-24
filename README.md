@@ -119,6 +119,8 @@ The methodology involves several distinct stages: data preparation, exploratory 
 
 High Risk Cluster: 1
 
+![Diagram](custsomer_segmentation_outliers.jpg)
+
 ### After applying more aggressive premium adjustments for high-risk customers:
 **Original Revenue**: 1254516.15
 
@@ -127,7 +129,6 @@ High Risk Cluster: 1
 **Revenue Increase Percentage**: 5.28%
 
 ![Diagram](adjusted_pricing.jpg)
-
 
 
 ### Summary Statistics for Original and Adjusted Premiums
