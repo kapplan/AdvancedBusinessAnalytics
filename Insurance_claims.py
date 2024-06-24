@@ -612,17 +612,3 @@ print(f"Adjusted Revenue: {adjusted_revenue}")
 # Calculate the revenue increase percentage
 revenue_increase_percentage = ((adjusted_revenue - original_revenue) / original_revenue) * 100
 print(f"Revenue Increase Percentage: {revenue_increase_percentage:.2f}%")
-
-# Calculate the revenue increase (filtered for outliers)
-outliers = ['113947', '310312', '132045', '209446', '453588']
-data_filtered = data[~data['policy_id'].isin(outliers)]
-original_revenue_filtered = data_filtered['annual_prem'].sum()
-adjusted_revenue_filtered = data_filtered['adjusted_annual_prem'].sum()
-revenue_increase_filtered = adjusted_revenue_filtered - original_revenue_filtered
-revenue_increase_percentage_filtered = (revenue_increase_filtered / original_revenue_filtered) * 100
-
-# Display the results
-print(f"Original Revenue (Filtered): {original_revenue_filtered}")
-print(f"Adjusted Revenue (Filtered): {adjusted_revenue_filtered}")
-print(f"Revenue Increase: {revenue_increase_filtered}")
-print(f"Revenue Increase Percentage: {revenue_increase_percentage_filtered:.2f}%")
