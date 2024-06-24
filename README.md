@@ -109,6 +109,14 @@ The methodology involves several distinct stages: data preparation, exploratory 
 | 147217    | -83181.582642    | Jeep       | Wrangler   |
 
 
+Cluster Summary:
+               net_contribution  ...  total_premiums_paid
+risk_cluster                    ...                     
+0                -36026.403582  ...         27390.559608
+1                -55018.725491  ...          9851.425252
+2                  9412.760071  ...         17868.080268
+
+High Risk Cluster: 1
 
 **Susipicous Claims Policy IDs**: 113947, 310312, 592543, 132045, 438097, 500283, 185750, 209446, 113442, 453588
 
