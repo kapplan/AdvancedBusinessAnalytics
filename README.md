@@ -111,6 +111,8 @@ The methodology involves several distinct stages: data preparation, exploratory 
 
 ### Profitable/Non-Profitble High/Low Risk Customer Segmentation
 
+![Diagram](custsomer_segmentation_outliers.jpg)
+
 | Risk Cluster | Net Contribution | Total Premiums Paid |
 |--------------|------------------:|--------------------:|
 | 0            | -36026.40         | 27390.56            |
@@ -119,17 +121,15 @@ The methodology involves several distinct stages: data preparation, exploratory 
 
 High Risk Cluster: 1
 
-![Diagram](custsomer_segmentation_outliers.jpg)
-
 ### After applying more aggressive premium adjustments for high-risk customers:
+
+![Diagram](adjusted_pricing.jpg)
+
 **Original Revenue**: 1254516.15
 
 **Adjusted Revenue After Dynamic Pricing based on Risk**: 1320695.395160412
 
 **Revenue Increase Percentage**: 5.28%
-
-![Diagram](adjusted_pricing.jpg)
-
 
 ### Summary Statistics for Original and Adjusted Premiums
 
