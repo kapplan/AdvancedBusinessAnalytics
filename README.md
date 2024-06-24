@@ -109,14 +109,20 @@ The methodology involves several distinct stages: data preparation, exploratory 
 | 147217    | -83181.582642    | Jeep       | Wrangler   |
 
 
-Cluster Summary:
-               net_contribution  ...  total_premiums_paid
-risk_cluster                    ...                     
-0                -36026.403582  ...         27390.559608
-1                -55018.725491  ...          9851.425252
-2                  9412.760071  ...         17868.080268
+## Cluster Summary
+
+| Risk Cluster | Net Contribution | Total Premiums Paid |
+|--------------|------------------:|--------------------:|
+| 0            | -36026.40         | 27390.56            |
+| 1            | -55018.73         | 9851.43             |
+| 2            | 9412.76           | 17868.08            |
 
 High Risk Cluster: 1
+
+## Dynamic Pricing for the High Risk Cluster
+**Original Revenue**: 1254516.15
+**Adjusted Revenue After Dynamic Pricing based on Risk**: 1320695.395160412
+**Revenue Increase Percentage**: 5.28%
 
 **Susipicous Claims Policy IDs**: 113947, 310312, 592543, 132045, 438097, 500283, 185750, 209446, 113442, 453588
 
