@@ -110,7 +110,7 @@ The methodology involves several distinct stages: data preparation, exploratory 
 
 
 
-**Susipicous Claims Policy IDs**: [113947, 310312, 592543, 132045, 438097, 500283, 185750, 209446, 113442, 453588]
+**Susipicous Claims Policy IDs**: 113947, 310312, 592543, 132045, 438097, 500283, 185750, 209446, 113442, 453588
 
 **Total Net Contribution (Claim Amount substracted by Annual Premiums Paid) of Suspicious Policy IDs**: -1192486.0300000003
 
