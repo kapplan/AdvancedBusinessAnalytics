@@ -124,10 +124,11 @@ High Risk Cluster: 1
 
 **Adjusted Revenue After Dynamic Pricing based on Risk**: 1320695.395160412
 
+**Revenue Increase Percentage**: 5.28%
+
 ![Diagram](adjusted_pricing.jpg)
 
 
-**Revenue Increase Percentage**: 5.28%
 
 ### Summary Statistics for Original and Adjusted Premiums
 
