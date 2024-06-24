@@ -109,8 +109,39 @@ The methodology involves several distinct stages: data preparation, exploratory 
 | 147217    | -83181.582642    | Jeep       | Wrangler   |
 
 
+### Profitable/Non-Profitble High/Low Risk Customer Segmentation
 
-**Susipicous Claims Policy IDs**: [113947, 310312, 592543, 132045, 438097, 500283, 185750, 209446, 113442, 453588]
+| Risk Cluster | Net Contribution | Total Premiums Paid |
+|--------------|------------------:|--------------------:|
+| 0            | -36026.40         | 27390.56            |
+| 1            | -55018.73         | 9851.43             |
+| 2            | 9412.76           | 17868.08            |
+
+High Risk Cluster: 1
+
+### After applying more aggressive premium adjustments for high-risk customers:
+**Original Revenue**: 1254516.15
+
+**Adjusted Revenue After Dynamic Pricing based on Risk**: 1320695.395160412
+
+**Revenue Increase Percentage**: 5.28%
+
+### Summary Statistics for Original and Adjusted Premiums
+
+| Statistic | Annual Premium | Adjusted Annual Premium |
+|-----------|----------------:|------------------------:|
+| Count     | 1000.000000     | 1000.000000             |
+| Mean      | 1254.516150     | 1320.695395             |
+| Std Dev   | 244.167395      | 315.827434              |
+| Min       | 431.440000      | 449.923846              |
+| 25%       | 1087.717500     | 1109.148750             |
+| 50%       | 1255.310000     | 1285.462112             |
+| 75%       | 1413.805000     | 1497.675066             |
+| Max       | 2045.700000     | 2659.410000             |
+
+# Fraud Analysis
+
+**Susipicous Claims Policy IDs**: 113947, 310312, 592543, 132045, 438097, 500283, 185750, 209446, 113442, 453588
 
 **Total Net Contribution (Claim Amount substracted by Annual Premiums Paid) of Suspicious Policy IDs**: -1192486.0300000003
 
