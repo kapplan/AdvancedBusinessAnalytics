@@ -61,7 +61,7 @@ The methodology involves several distinct stages: data preparation, exploratory 
 - **Standardization and Encoding**: Standardize numerical features using StandardScaler and one-hot encode categorical variables using OneHotEncoder to prepare the data for machine learning models.
 - **Dimensionality Reduction**: Apply Principal Component Analysis (PCA) to reduce dimensionality and retain essential variance, to improve computational efficiency and mitigate the curse of dimensionality.
 7. **Anomaly Detection and SHAP Analysis**
-- **Isolation Forest Model**: Use an Isolation Forest model for anomaly detection, focusing on identifying outliers in high-dimensional datasets.
+- **Isolation Forest Model**: Use an Isolation Forest model for anomaly detection, focusing on identifying outliers.
 - Anomaly Score Assignment: Train the model and predict anomalies, assigning scores to data points for further analysis.
 - Top Anomalies Identification: Extract and analyze the top anomalies based on total claim amounts to identify significant outliers.
 - **SHAP Analysis**: Perform SHAP analysis to interpret model predictions and identify features contributing to the likelihood of fraudulent behavior.
@@ -109,7 +109,9 @@ The methodology involves several distinct stages: data preparation, exploratory 
 | 147217    | -83181.582642    | Jeep       | Wrangler   |
 
 
+
 ### Profitable/Non-Profitble High/Low Risk Customer Segmentation
+![Diagram](custsomer_segmentation_outliers.jpg)
 
 | Risk Cluster | Net Contribution | Total Premiums Paid |
 |--------------|------------------:|--------------------:|
@@ -120,6 +122,9 @@ The methodology involves several distinct stages: data preparation, exploratory 
 High Risk Cluster: 1
 
 ### After applying more aggressive premium adjustments for high-risk customers:
+
+![Diagram](adjusted_pricing.jpg)
+
 **Original Revenue**: 1254516.15
 
 **Adjusted Revenue After Dynamic Pricing based on Risk**: 1320695.395160412
