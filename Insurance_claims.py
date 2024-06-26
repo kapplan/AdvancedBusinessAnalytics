@@ -14,6 +14,7 @@ from sklearn.ensemble import RandomForestClassifier, IsolationForest
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.decomposition import PCA
+from sklearn.decomposition import TruncatedSVD
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 #%%
@@ -176,14 +177,14 @@ print("Policy IDs with the most losses:\n", most_losses[['policy_id', 'net_contr
 print("\nSummary Statistics for Policies with the Least Profits:\n", most_losses.describe())
 
 #%%
-# Finding the Optimal Number of Clusters
-# Replace 'numerical_cols' and 'categorical_cols' with your column names
+# First Approach to Clustering - Silhouette and Elbow Method for K-Means
 numerical_cols = data.select_dtypes(include=['int64', 'float64']).columns
 categorical_cols = data.select_dtypes(include=['object']).columns
 
 # Create transformers for numerical and categorical data
 numerical_transformer = StandardScaler()
 categorical_transformer = OneHotEncoder(handle_unknown='ignore')
+
 # Combine transformers into a preprocessor
 preprocessor = ColumnTransformer(
     transformers=[
@@ -232,43 +233,43 @@ plt.title('The Elbow Method For Optimal Number of Clusters')
 
 plt.tight_layout()
 plt.show()
-
+#%%
 # Choose the number of clusters based on the plots and set it in the final K-means model
 optimal_clusters = 3
 
-# K-means Clustering
-numeric_columns = ['cust_age', 'annual_prem', 'total_claim_amount', 'num_vehicles_involved', 'injury_claim',
-                   'property_claim', 'vehicle_claim', 'production_year']
+# List of numeric columns
+numeric_columns = [
+    'cust_age', 'ins_deductible', 'annual_prem', 'zip_code',
+    'incident_hour', 'num_vehicles_involved', 'bodily_injuries',
+    'witnesses', 'injury_claim', 'property_claim', 'vehicle_claim',
+    'production_year'
+]
 
+# Ensure numeric columns are correctly typed
 for col in numeric_columns:
     data[col] = pd.to_numeric(data[col], errors='coerce')
 
-# Define profitable and not profitable based on net contribution
-data['profitable'] = np.where(data['net_contribution'] > 0, 'Profitable', 'Not Profitable')
-
-# Relevant features for clustering
-relevant_features = [
-    'cust_age', 'annual_prem',
-    'total_claim_amount', 'injury_claim', 'property_claim', 'vehicle_claim', 'avg_claim_amount', 'max_claim_amount',
-    'policy_duration_years', 'total_premiums_paid', 'net_contribution']
-
-# Categorical columns to convert
-categorical_cols = ['insured_sex', 'edu_lvl', 'marital_status', 'claim_type', 'acc_type',
-                    'incident_city', 'property_damage', 'car_brand', 'car_model']
+# List of categorical columns to convert
+categorical_cols = [
+    'policy_id', 'coverage_start_date', 'cust_region', 'sum_assured_group',
+    'insured_sex', 'edu_lvl', 'marital_status', 'claim_incurred_date',
+    'claim_type', 'acc_type', 'emg_services_notified', 'incident_city',
+    'property_damage', 'police_report_avlbl', 'car_brand', 'car_model'
+]
 
 # Converting categorical features to numerical using pd.get_dummies()
 data = pd.get_dummies(data, columns=categorical_cols, drop_first=True)
 
 # Extract features for clustering
 dummy_cols = data.columns[data.columns.str.startswith(tuple(categorical_cols))]
-features = data[relevant_features + list(dummy_cols)]
+features = data[numeric_columns + list(dummy_cols)]
 
 # Standardize the features
 scaler = StandardScaler()
 features_scaled = scaler.fit_transform(features)
 
 # Apply K-Means clustering
-kmeans = KMeans(n_clusters=3, random_state=42)
+kmeans = KMeans(n_clusters=optimal_clusters, random_state=42)
 data['cluster'] = kmeans.fit_predict(features_scaled)
 
 # Analyze segment characteristics - only numeric columns
@@ -287,41 +288,123 @@ plt.xlabel('First Principal Component')
 plt.ylabel('Second Principal Component')
 plt.legend(title='Cluster')
 plt.show()
+
 #%%
-numerical_features = [
-    'cust_age', 'ins_deductible', 'annual_prem', 'zip_code',
-    'incident_hour', 'num_vehicles_involved', 'bodily_injuries',
-    'witnesses', 'injury_claim',
-    'property_claim', 'vehicle_claim', 'production_year'
-]
+# Select numerical and categorical columns
+numerical_cols = data.select_dtypes(include=['int64', 'float64']).columns.tolist()
+categorical_cols = data.select_dtypes(include=['object', 'bool']).columns.tolist()
 
-categorical_features = [
-    'policy_id', 'coverage_start_date', 'cust_region', 'sum_assured_group',
-    'insured_sex', 'edu_lvl', 'marital_status', 'claim_incurred_date',
-    'claim_type', 'acc_type', 'emg_services_notified', 'incident_city',
-    'property_damage', 'police_report_avlbl', 'car_brand', 'car_model'
-]
-# Define the preprocessing steps
-preprocessor = ColumnTransformer(
-    transformers=[
-        ('num', StandardScaler(), numerical_features),
-        ('cat', OneHotEncoder(), categorical_features)
-    ]
-)
-
-# Define the model
-model = RandomForestClassifier(random_state=42)
-
-# Create the pipeline
-pipeline = Pipeline(steps=[
-    ('preprocessor', preprocessor),
-    ('model', model)
+# Preprocessing for numerical data
+numerical_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='median')),
+    ('scaler', StandardScaler())
 ])
 
-# Define the input data X
-X = data[numerical_features + categorical_features]
-y = data['total_claim_amount']
+# Preprocessing for categorical data
+categorical_transformer = Pipeline(steps=[
+    ('imputer', SimpleImputer(strategy='most_frequent')),
+    ('onehot', OneHotEncoder(handle_unknown='ignore'))
+])
 
+# Bundle preprocessing for numerical and categorical data
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', numerical_transformer, numerical_cols),
+        ('cat', categorical_transformer, categorical_cols)
+    ])
+
+# Apply the preprocessor
+X_preprocessed = preprocessor.fit_transform(data)
+
+# Define the range of clusters to try
+range_n_clusters = range(2, 11)
+
+# Initialize lists to store the results of the silhouette score and inertia
+silhouette_avg_scores = []
+inertia_scores = []
+
+# Calculate silhouette score and inertia for different numbers of clusters
+for n_clusters in range_n_clusters:
+    # Initialize the clusterer with n_clusters value and a random generator seed for reproducibility.
+    clusterer = KMeans(n_clusters=n_clusters, random_state=42)
+    cluster_labels = clusterer.fit_predict(X_preprocessed)
+
+    # Silhouette score
+    silhouette_avg = silhouette_score(X_preprocessed, cluster_labels)
+    silhouette_avg_scores.append(silhouette_avg)
+
+    # Inertia
+    inertia_scores.append(clusterer.inertia_)
+
+# Plotting the silhouette scores
+plt.figure(figsize=(14, 7))
+
+plt.subplot(1, 2, 1)
+plt.plot(range_n_clusters, silhouette_avg_scores, 'bx-')
+plt.xlabel('Number of Clusters')
+plt.ylabel('Silhouette Score')
+plt.title('Silhouette Score For Optimal Number of Clusters')
+
+# Plotting the elbow method results
+plt.subplot(1, 2, 2)
+plt.plot(range_n_clusters, inertia_scores, 'bx-')
+plt.xlabel('Number of Clusters')
+plt.ylabel('Inertia')
+plt.title('The Elbow Method For Optimal Number of Clusters')
+
+plt.tight_layout()
+plt.show()
+
+#%%
+# Second Approach - TruncatedSVD, K-Means clustering,
+# Apply TruncatedSVD with a high number of components
+svd = TruncatedSVD(n_components=50)
+X_svd = svd.fit_transform(X_preprocessed)
+
+# Calculate the cumulative explained variance ratio
+cumulative_variance = np.cumsum(svd.explained_variance_ratio_)
+
+# Determine the number of components to retain 95% of the variance
+n_components_95 = np.argmax(cumulative_variance >= 0.95) + 1  # +1 because indices start at 0
+
+# Now, reapply TruncatedSVD with the chosen number of components
+svd_95 = TruncatedSVD(n_components=n_components_95)
+X_svd_95 = svd_95.fit_transform(X_preprocessed)
+
+# Determine the optimal number of clusters using silhouette scores
+range_n_clusters = range(2, 11)
+best_n_clusters = 0
+best_silhouette_score = -1
+
+for n_clusters in range_n_clusters:
+    clusterer = KMeans(n_clusters=n_clusters, random_state=42)
+    cluster_labels = clusterer.fit_predict(X_svd_95)  # Using SVD-transformed data
+    silhouette_avg = silhouette_score(X_svd_95, cluster_labels)
+
+    # Check if this silhouette score is the best one so far
+    if silhouette_avg > best_silhouette_score:
+        best_n_clusters = n_clusters
+        best_silhouette_score = silhouette_avg
+
+# Now that you have the optimal number of clusters, apply K-Means clustering to the chosen data representation
+kmeans = KMeans(n_clusters=best_n_clusters, init='k-means++', random_state=42)
+cluster_labels = kmeans.fit_predict(X_svd_95)
+
+# Create a DataFrame for the SVD results for easy plotting
+column_names = [f'Component_{i+1}' for i in range(X_svd_95.shape[1])]
+svd_df = pd.DataFrame(X_svd_95, columns=column_names)
+svd_df['Cluster'] = cluster_labels
+
+# Plotting the clusters using the first two SVD components
+plt.figure(figsize=(10, 8))
+sns.scatterplot(x='Component_1', y='Component_2', hue='Cluster', data=svd_df, palette='viridis')
+plt.title('Cluster Visualization with TruncatedSVD Components')
+plt.xlabel('Component 1')
+plt.ylabel('Component 2')
+plt.legend()
+plt.show()
+
+# Isolation Forest
 # Identify outliers using Isolation Forest
 iso_forest = IsolationForest(contamination=0.01, random_state=42)  # contamination is an estimate of the proportion of outliers
 outliers = iso_forest.fit_predict(data.select_dtypes(include=[np.number]))
@@ -335,31 +418,40 @@ suspicious_policy_ids = data.iloc[outlier_indices]['policy_id'].values
 # Print suspicious policy IDs
 print("Suspicious Policy IDs:\n", suspicious_policy_ids)
 
+# Define the model pipeline
+model = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('svd', svd_95),
+    ('model', LinearRegression())
+])
+
 # Fit the pipeline
-pipeline.fit(X, data['total_claim_amount'])
+model.fit(X, data['total_claim_amount'])
 
 # Transform the input data for SHAP analysis
-X_transformed = pipeline.named_steps['preprocessor'].transform(X)
+X_transformed = model.named_steps['preprocessor'].transform(X)
 
 # Generate new feature names after one-hot encoding
-new_feature_names = numerical_features.copy()
-for feature in categorical_features:
+new_feature_names = numerical_cols.copy()
+for feature in categorical_cols:
     unique_values = data[feature].unique()
     for value in unique_values:
         new_feature_names.append(f"{feature}_{value}")
-all_feature_names = numerical_features + list(new_feature_names)
+all_feature_names = new_feature_names
 
 # Explain the model using SHAP
-explainer = shap.TreeExplainer(pipeline.named_steps['model'])
+explainer = shap.Explainer(model.named_steps['model'], X_transformed)
 
 # Calculate SHAP values for the transformed data
-shap_values = explainer.shap_values(X_transformed)
+shap_values = explainer(X_transformed)
 
 # Plot the summary of SHAP values to show feature importance
 shap.summary_plot(shap_values, features=X_transformed, feature_names=all_feature_names)
-
 #%%
 # Further analysis of profitable and non-profitable segments
+# Define profitable and not profitable based on net contribution
+data['profitable'] = np.where(data['net_contribution'] > 0, 'Profitable', 'Not Profitable')
+
 profitable_customers = data[data['net_contribution'] > 0]
 non_profitable_customers = data[data['net_contribution'] < 0]
 
