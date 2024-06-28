@@ -1,4 +1,4 @@
-# Advanced Business Analytics: Customer Segmentation and Fraud Detection for Nonlife Insurance Company
+# Customer Segmentation and Fraud Detection for Nonlife Insurance Company
 
 ## Objective
 The primary objective of this project is to conduct an in-depth analysis of claims data from a non-life insurance company focusing on motor insurance. The overarching goal is to leverage advanced data analysis techniques to yield a nuanced understanding of customer profiles, claim patterns, and potential areas of risk in order to optimize profit. 
@@ -51,7 +51,7 @@ The methodology involves several distinct stages: data preparation, exploratory 
 
 4. **Feature Engineering**
 - Age Group Segmentation: Create a new variable, age_group, by binning the cust_age variable into categorical age ranges.
-- New Feature Creation: Calculate claim_amount_per_vehicle by dividing total_claim_amount by num_vehicles_involved to gain insights into the average claim cost per vehicle.
+- New Feature Creation: Calculate claim_amount_per_vehicle by dividing total_claim_amount by num_vehicles_involved to gain insights into the average claim cost per vehicle. Add a new feature profitability 
 - Date Feature Extraction: Transform date features to datetime objects and create a new feature, time_to_claim, representing the time difference between policy initiation and claim reporting.
   
 5. **Data Visualization**
@@ -60,6 +60,11 @@ The methodology involves several distinct stages: data preparation, exploratory 
 - **Cross Tabulation**: Construct contingency tables to examine relationships between categorical variables and key features such as property damage, emergency services notification, and police report availability.
 - **Standardization and Encoding**: Standardize numerical features using StandardScaler and one-hot encode categorical variables using OneHotEncoder to prepare the data for machine learning models.
 - **Dimensionality Reduction**: Apply Principal Component Analysis (PCA) to reduce dimensionality and retain essential variance, to improve computational efficiency and mitigate the curse of dimensionality.
+7. **Customer Segmentation**:
+- First Approach (**K-Means with The Silhouette Score and The Elbow Method**): 
+- Second Approach (**TruncatedSVD and K-means**): 
+
+
 7. **Anomaly Detection and SHAP Analysis**
 - **Isolation Forest Model**: Use an Isolation Forest model for anomaly detection, focusing on identifying outliers.
 - Anomaly Score Assignment: Train the model and predict anomalies, assigning scores to data points for further analysis.
@@ -110,7 +115,7 @@ The methodology involves several distinct stages: data preparation, exploratory 
 
 
 
-### Profitable/Non-Profitble High/Low Risk Customer Segmentation
+### Profitable/Non-Profitable High/Low Risk Customer Segmentation
 ![Diagram](custsomer_segmentation_outliers.jpg)
 
 | Risk Cluster | Net Contribution | Total Premiums Paid |
