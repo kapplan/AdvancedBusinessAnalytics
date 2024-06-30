@@ -73,7 +73,7 @@ The methodology involves several distinct stages: data preparation, exploratory 
 8. **Model Building and Interpretation**
 - Data Preprocessing for Clustering: Scale numerical variables and apply PCA for dimensionality reduction. One-hot encode categorical variables for clustering.
 - **K-means Clustering**: Apply the K-means algorithm to partition the data into distinct clusters, using the elbow method and silhouette analysis to determine the optimal number of clusters.
-- Cluster Visualization and Interpretation: Visualize customer segments, analyze feature distributions across segments, and interpret cluster characteristics to inform risk assessment and fraud detection strategies.
+- Cluster Visualization and Interpretation: Visualize customer segments, analyze feature distributions across segments, and interpret cluster characteristics to inform prrofitability and high risk assessment.
   
 9. **Further Analysis of Profitable and Non-Profitable Segments**
 - Summary Statistics: Summary statistics are generated for profitable and non-profitable customers to compare their characteristics.
