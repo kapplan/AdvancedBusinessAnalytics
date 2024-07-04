@@ -67,8 +67,7 @@ The methodology involves several distinct stages: data preparation, exploratory 
 
 9. **Anomaly Detection and SHAP Analysis**
 - **Isolation Forest Model**: Use an Isolation Forest model for anomaly detection, focusing on identifying outliers.
-- Anomaly Score Assignment: Train the model and predict anomalies, assigning scores to data points for further analysis.
-- Top Anomalies Identification: Extract and analyze the top anomalies based on total claim amounts to identify significant outliers.
+- Top Anomalies Identification: Extract and analyze the top anomalies to identify significant outliers.
 - **SHAP Analysis**: Perform SHAP analysis to interpret model predictions and identify features contributing to the likelihood of fraudulent behavior.
 10. **Model Building and Interpretation**
 - Data Preprocessing for Clustering: Scale numerical variables and apply PCA for dimensionality reduction. One-hot encode categorical variables for clustering.
