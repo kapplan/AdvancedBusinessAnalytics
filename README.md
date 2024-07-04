@@ -90,8 +90,13 @@ The methodology involves several distinct stages: data preparation, exploratory 
 
 - Majority of policyholders fall within the '26-35' and '36-45' age groups.
 - The median total claim amount is relatively consistent across regions around 58,000 to 60,000, with the 'north' region displaying a slightly higher median compared to 'east' and 'west'.
-- 56-65 years age group tend to have higher average claims, while 18-25 comes second. ![image](https://github.com/kapplan/AdvancedBusinessAnalytics/assets/105065413/f710c74c-ec72-457b-979c-fcfe49605413)
-
+- 56-65 years age group tend to have higher average claims, while 18-25 comes second. 
+- The risk of claims does not increase dramatically at specific times.
+- Long-duration policies lead to higher insurance claims.
+- The median annual premium paid is approximately 1300. There are some annual premium values significantly lower and higher than the typical range, below 600 and above 1800.
+- Most of the net contributions are negative, indicating that the **insurance company pays out more in claims than it collects in premiums for most policies**.
+The biggest value is around **-50.000, suggesting that this is the most common loss amount**. Most policies result in losses, **a few results in very high losses**. 
+- Higher total premiums paid tend to result in higher net contributions. The positive correlation suggests that **increasing premium amounts could potentially reduce net losses**.
 
 
 ### Policy IDs with significant financial losses:
