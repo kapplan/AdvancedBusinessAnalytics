@@ -61,8 +61,8 @@ The methodology involves several distinct stages: data preparation, exploratory 
 - **Standardization and Encoding**: Standardize numerical features using StandardScaler and one-hot encode categorical variables using OneHotEncoder to prepare the data for machine learning models.
 - **Dimensionality Reduction**: Apply Principal Component Analysis (PCA) to reduce dimensionality and retain essential variance, to improve computational efficiency and mitigate the curse of dimensionality.
 7. **Customer Segmentation**:
-- First Approach (**K-Means with The Silhouette Score and The Elbow Method**): 
-- Second Approach (**TruncatedSVD and K-means**): 
+- First Approach (**K-Means with The Silhouette Score and The Elbow Method**) 
+- Second Approach (**TruncatedSVD and K-means**)
 
 
 7. **Anomaly Detection and SHAP Analysis**
