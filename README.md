@@ -83,8 +83,8 @@ The methodology involves several distinct stages: data preparation, exploratory 
 - Cluster Analysis: K-Means clustering is applied to identify high-risk clusters based on features such as net contribution, loss ratio, total claimed amount, and total premiums paid.
 
 10. **Revenue Analysis and Dynamic Pricing**
-- Dynamic Pricing Strategy: A sophisticated risk assessment model using RandomForestRegressor is developed to predict the net contribution of each customer. More aggressive premium adjustments are applied for high-risk customers to optimize revenue.
-- Adjust Premiums for High-Risk Customers: Premium adjustments are applied dynamically based on the risk assessment model to ensure a minimum increase for high-risk customers and prevent revenue loss.
+- **Dynamic Pricing Strategy**: A sophisticated risk assessment model using RandomForestRegressor is developed to predict the net contribution of each customer. More aggressive premium adjustments are applied for high-risk customers to optimize revenue.
+- **Adjust Premiums for High-Risk Customers**: Premium adjustments are applied dynamically based on the risk assessment model to ensure a minimum increase for high-risk customers and prevent revenue loss.
 
 ## Summary and Findings
 
