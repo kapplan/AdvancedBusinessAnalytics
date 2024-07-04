@@ -88,6 +88,12 @@ The methodology involves several distinct stages: data preparation, exploratory 
 
 ## Summary and Findings
 
+- Majority of policyholders fall within the '26-35' and '36-45' age groups.
+- The median total claim amount is relatively consistent across regions around 58,000 to 60,000, with the 'north' region displaying a slightly higher median compared to 'east' and 'west'.
+- 56-65 years age group tend to have higher average claims, while 18-25 comes second. ![image](https://github.com/kapplan/AdvancedBusinessAnalytics/assets/105065413/f710c74c-ec72-457b-979c-fcfe49605413)
+
+
+
 ### Policy IDs with significant financial losses:
 
 | Policy ID | Net Contribution | Car Brand  | Car Model  |
