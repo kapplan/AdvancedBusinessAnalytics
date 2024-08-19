@@ -136,7 +136,7 @@ The biggest value is around **-50.000, suggesting that this is the most common l
 
 High Risk Cluster: 1
 
-### After applying more aggressive premium adjustments for high-risk customers:
+### After applying more aggressive premium adjustments to high-risk customers:
 
 ![Diagram](adjusted_pricing.jpg)
 
